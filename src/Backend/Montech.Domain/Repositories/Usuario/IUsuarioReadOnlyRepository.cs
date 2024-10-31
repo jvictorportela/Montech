@@ -1,0 +1,8 @@
+﻿namespace Montech.Domain.Repositories.Usuario;
+
+public interface IUsuarioReadOnlyRepository
+{
+    Task<bool> ExisteUsuarioAtivoComEsseEmail(string email);//GET
+    Task<Entities.Usuario> BuscarUsuario(long id); //GET
+    Task<List<Entities.Usuario>> BuscarUsuarioAtivos(); //GETALL
+}

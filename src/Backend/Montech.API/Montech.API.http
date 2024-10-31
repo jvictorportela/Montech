@@ -1,0 +1,6 @@
+@Montech.API_HostAddress = http://localhost:5231
+
+GET {{Montech.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

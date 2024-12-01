@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Montech.API.Attributes;
 using Montech.Application.UseCases.Usuario.Buscar;
 using Montech.Application.UseCases.Usuario.BuscarAtivos;
 using Montech.Application.UseCases.Usuario.Criar;
@@ -8,8 +9,7 @@ using Montech.Communication.Responses.Usuario;
 
 namespace Montech.API.Controllers.Usuario;
 
-[Route("[controller]")]
-[ApiController]
+[AuthenticatedUser]
 public class UsuarioController : MontechBaseController
 {
     [HttpPost]

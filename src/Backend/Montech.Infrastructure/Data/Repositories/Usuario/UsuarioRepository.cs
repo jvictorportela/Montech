@@ -60,4 +60,9 @@ public class UsuarioRepository : IUsuarioReadOnlyRepository, IUsuarioWriteOnlyRe
     {
         return await _context.Usuarios.AnyAsync(u => u.Email.Equals(email) && u.Ativo);
     }
+
+    public async Task<bool> ExistActiveUserWithIdentifier(Guid userIdentifier)
+    {
+        return await _context.Usuarios.AnyAsync(user => user.UserIdentifier.Equals(userIdentifier) && user.Ativo);
+    }
 }

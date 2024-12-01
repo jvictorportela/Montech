@@ -97,6 +97,15 @@ namespace Montech.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Token Inexistente.
+        /// </summary>
+        public static string NO_TOKEN {
+            get {
+                return ResourceManager.GetString("NO_TOKEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The password must contain 6 or more characters..
         /// </summary>
         public static string PASSWORD_LENGTH {
@@ -111,6 +120,15 @@ namespace Montech.Exceptions {
         public static string UNKNOW_ERROR {
             get {
                 return ResourceManager.GetString("UNKNOW_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a User without permition access.
+        /// </summary>
+        public static string USER_WITHOUT_PERMISSION_ACCESS {
+            get {
+                return ResourceManager.GetString("USER_WITHOUT_PERMISSION_ACCESS", resourceCulture);
             }
         }
     }

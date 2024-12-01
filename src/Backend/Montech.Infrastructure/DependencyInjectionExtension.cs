@@ -5,10 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Montech.Domain.Repositories;
 using Montech.Domain.Repositories.Usuario;
 using Montech.Domain.Security.Tokens;
+using Montech.Domain.Services.LoggedUser;
 using Montech.Infrastructure.Data;
 using Montech.Infrastructure.Data.Repositories.Usuario;
 using Montech.Infrastructure.Extensions;
 using Montech.Infrastructure.Security.Tokens.Access.Generator;
+using Montech.Infrastructure.Security.Tokens.Access.Validator;
+using Montech.Infrastructure.Services.LoggedUser;
 using System.Reflection;
 
 namespace Montech.Infrastructure;
@@ -21,6 +24,7 @@ public static class DependencyInjectionExtension
         AddFluentMigrator_SqlServer(services, configuration);
         AddTokens(services, configuration);
         AddRepositories(services, configuration);
+        AddLoggedUser(services);
     }
 
     private static void AddDbContext_SqlServer(IServiceCollection services, IConfiguration configuration)
@@ -57,5 +61,11 @@ public static class DependencyInjectionExtension
         var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
 
         services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
+        services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey!));
+    }
+
+    private static void AddLoggedUser(IServiceCollection services)
+    {
+        services.AddScoped<ILoggedUser, LoggedUser>();
     }
 }

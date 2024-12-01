@@ -135,4 +135,10 @@
   <data name="UNKNOW_ERROR" xml:space="preserve">
     <value>Unknow error.</value>
   </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>Token Inexistente</value>
+  </data>
+  <data name="USER_WITHOUT_PERMISSION_ACCESS" xml:space="preserve">
+    <value>User without permition access</value>
+  </data>
 </root>

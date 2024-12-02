@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Montech.API.Attributes;
+using Montech.Application.UseCases.Usuario.Atualizar;
 using Montech.Application.UseCases.Usuario.Buscar;
 using Montech.Application.UseCases.Usuario.BuscarAtivos;
 using Montech.Application.UseCases.Usuario.Criar;
 using Montech.Application.UseCases.Usuario.Deletar;
+using Montech.Application.UseCases.Usuario.Profile;
 using Montech.Communication.Requests.Usuario;
+using Montech.Communication.Responses;
 using Montech.Communication.Responses.Usuario;
 
 namespace Montech.API.Controllers.Usuario;
@@ -40,6 +43,29 @@ public class UsuarioController : MontechBaseController
 
         return Ok(result);
     }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(ResponseUserProfileJson), StatusCodes.Status200OK)]
+    [AuthenticatedUser]
+    public async Task<IActionResult> GetUserProfile([FromServices] IGetUserProfileUseCase useCase)
+    {
+        var result = await useCase.Execute();
+
+        return Ok(result);
+    }
+
+
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [AuthenticatedUser]
+    public async Task<IActionResult> Update([FromServices] IUpdateUserUseCase useCase, [FromBody] RequestUpdateUserJson request)
+    {
+        await useCase.Execute(request);
+
+        return NoContent();
+    }
+
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUserById([FromServices] IDeleteUserUseCase useCase, long id)

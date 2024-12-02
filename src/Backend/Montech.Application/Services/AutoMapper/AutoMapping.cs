@@ -9,6 +9,7 @@ public class AutoMapping : Profile
     public AutoMapping()
     {
         RequestToDomain();
+        DomainToResponse();
     }
 
     private void RequestToDomain()
@@ -21,6 +22,6 @@ public class AutoMapping : Profile
 
     private void DomainToResponse()
     {
-        CreateMap<Domain.Entities.Usuario, ResponseUsuarioRegistradoJson>(); 
+        CreateMap<Domain.Entities.Usuario, ResponseUserProfileJson>();
     }
 }

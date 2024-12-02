@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Montech.Application.UseCases.Usuario.Login.DoLogin;
 using Montech.Communication.Requests.Login;
 using Montech.Communication.Responses;

@@ -4,7 +4,7 @@ using Montech.Domain.Repositories.Usuario;
 
 namespace Montech.Infrastructure.Data.Repositories.Usuario;
 
-public class UsuarioRepository : IUsuarioReadOnlyRepository, IUsuarioWriteOnlyRepository
+public class UsuarioRepository : IUsuarioReadOnlyRepository, IUsuarioWriteOnlyRepository, IUserUpdateOnlyRepository
 {
     private readonly MontechDbContext _context;
     private readonly IUnitOfWork _unitOfWork;
@@ -65,4 +65,11 @@ public class UsuarioRepository : IUsuarioReadOnlyRepository, IUsuarioWriteOnlyRe
     {
         return await _context.Usuarios.AnyAsync(user => user.UserIdentifier.Equals(userIdentifier) && user.Ativo);
     }
+
+    public async Task<Domain.Entities.Usuario> GetById(long id)
+    {
+        return await _context.Usuarios.FirstAsync(u => u.Id == id);
+    }
+
+    public void Update(Domain.Entities.Usuario user) => _context.Usuarios.Update(user);
 }

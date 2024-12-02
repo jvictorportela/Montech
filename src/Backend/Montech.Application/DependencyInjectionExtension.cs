@@ -2,11 +2,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Montech.Application.Services.AutoMapper;
 using Montech.Application.Services.Cryptography;
+using Montech.Application.UseCases.Usuario.Atualizar;
 using Montech.Application.UseCases.Usuario.Buscar;
 using Montech.Application.UseCases.Usuario.BuscarAtivos;
 using Montech.Application.UseCases.Usuario.Criar;
 using Montech.Application.UseCases.Usuario.Deletar;
 using Montech.Application.UseCases.Usuario.Login.DoLogin;
+using Montech.Application.UseCases.Usuario.Profile;
 using Montech.Application.UseCases.Usuario.Registrar;
 
 namespace Montech.Application;
@@ -27,6 +29,8 @@ public static class DependencyInjectionExtension
         services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         services.AddScoped<IGetActivesUsersUseCase, GetActiveUsersUseCase>();
         services.AddScoped<IDeleteUserUseCase, DeleteUserUseCase>();
+        services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
+        services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
     }
 
     private static void AddAutoMapper(IServiceCollection services)
